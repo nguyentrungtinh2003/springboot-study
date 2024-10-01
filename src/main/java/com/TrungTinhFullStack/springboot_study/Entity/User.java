@@ -20,4 +20,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<JournalEntry> journalEntries = new ArrayList<>();
+
+    private List<String> roles;
 }

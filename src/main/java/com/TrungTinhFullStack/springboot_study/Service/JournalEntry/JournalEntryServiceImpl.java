@@ -6,6 +6,7 @@ import com.TrungTinhFullStack.springboot_study.Repository.JournalEntryRepository
 import com.TrungTinhFullStack.springboot_study.Service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,11 +31,13 @@ public class JournalEntryServiceImpl implements JournalEntryService{
     }
 
     @Override
+    @Transactional
     public JournalEntry addJournalEntry(JournalEntry journalEntry) {
         return journalEntryRepository.save(journalEntry);
     }
 
     @Override
+    @Transactional
     public JournalEntry updateJournalEntry(Long id, JournalEntry journalEntry) {
         JournalEntry journalEntry1 = getJournalEntryById(id);
         User user = userService.getUserById(journalEntry.getUser().getId());
@@ -46,6 +49,7 @@ public class JournalEntryServiceImpl implements JournalEntryService{
     }
 
     @Override
+    @Transactional
     public JournalEntry deleteJournalEntry(Long id) {
         JournalEntry journalEntry1 = getJournalEntryById(id);
         journalEntryRepository.delete(journalEntry1);

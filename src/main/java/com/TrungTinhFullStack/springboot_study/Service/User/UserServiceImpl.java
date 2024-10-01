@@ -4,6 +4,7 @@ import com.TrungTinhFullStack.springboot_study.Entity.User;
 import com.TrungTinhFullStack.springboot_study.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +25,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public User addUser(User user) {
         return userRepository.save(user);
     }
 
     @Override
+    @Transactional
     public User updateUser(Long id, User user) {
         User user1 = getUserById(id);
         user1.setUsername(user.getUsername());
@@ -40,6 +43,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public User deleteUser(Long id) {
         User user = getUserById(id);
         userRepository.delete(user);

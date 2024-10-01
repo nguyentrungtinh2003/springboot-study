@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .csrf(crlf -> crlf.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/journalEntry/**","/user/**").authenticated()
+                        .requestMatchers("/admin/**").hasRole("ROLE_ADMIN")
                         .anyRequest().permitAll());
                 return http.build();
     }

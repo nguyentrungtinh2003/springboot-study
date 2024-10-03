@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public User addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList("USER"));
+        user.setRole("USER");
         LOGGER.info("Add user success ! user {} ",user);
         return userRepository.save(user);
     }

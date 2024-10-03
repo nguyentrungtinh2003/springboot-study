@@ -24,12 +24,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(crlf -> crlf.disable())
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/journalEntry/**").authenticated()
-                        .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/user/**").authenticated()
                         .anyRequest().permitAll());
-                return http.build();
+        return http.build();
+
     }
 
     @Bean
@@ -48,7 +48,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+      return authenticationConfiguration.getAuthenticationManager();
     }
 
 }
